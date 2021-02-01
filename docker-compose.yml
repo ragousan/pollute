@@ -2,8 +2,7 @@ version: '3.3'
 
 services:
   air_pollute:
-    build:
-      context: .
+    image: ragou/pollute_air_pollute
     volumes:
       - ./:/code
     networks:
