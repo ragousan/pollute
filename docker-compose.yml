@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  air_pollute:
+    build:
+      context: .
+    volumes:
+      - ./:/code
+    networks:
+      - pollute_net
+
+  flaski:
+    build:
+      context: .
+      dockerfile: Dockerfile.v
+    depends_on: 
+      - air_pollute
+    ports: 
+      - "5000:5000"
+    volumes:
+      - ./templates:/app/templates
+    networks:
+      - pollute_net
+
+networks:
+  pollute_net:
+    driver: bridge
+
+# volumes:
+#   - ./:
