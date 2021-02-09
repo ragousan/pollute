@@ -50,6 +50,7 @@ color_scale = np.array(
 sns.palplot(sns.color_palette(color_scale))
 
 
+#convert date variables to datetime
 def load_data(pollutant_ID):
     print("> Loading data...")
     date_vars = ["DatetimeBegin", "DatetimeEnd"]
@@ -130,7 +131,7 @@ def prepare_data(df, pollutant_ID):
     )
     return df
 
-
+#convert data to geojson format
 def create_geojson_features(df):
     print("> Creating GeoJSON features...")
     features = []
@@ -166,7 +167,7 @@ def make_map(features):
         {"type": "FeatureCollection", "features": features},
         period="P1M",
         add_last_point=True,
-        auto_play=True,
+        auto_play=False,
         loop=True,
         max_speed=1,
         loop_button=True,
@@ -203,24 +204,3 @@ csv_removal = os.listdir(project_dir)
 for csv_files in csv_removal:
     if csv_files.endswith(".csv"):
         os.remove(os.path.join(project_dir, csv_files))
-
-# pollution_map, df = plot_pollutant(1)
-# pollution_map.save("pollution_so2.html")
-# pollution_map
-
-# pollution_map, df = plot_pollutant(8)
-# pollution_map.save("pollution_no2.html")
-# pollution_map
-
-# pollution_map, df = plot_pollutant(10)
-# pollution_map.save("pollution_co.html")
-# pollution_map
-
-# pollution_map, df = plot_pollutant(20)
-# pollution_map.save("pollution_c6h6.html")
-# pollution_map
-
-
-# pollution_map, df = plot_pollutant(5)
-# pollution_map.save("pollution_pm.html")
-# pollution_map
